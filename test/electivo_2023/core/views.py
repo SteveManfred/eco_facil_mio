@@ -13,9 +13,10 @@ from django.views.decorators.csrf import csrf_exempt #decorador que nos permitir
 
 from registration.models import Profile #importa el modelo profile, el que usaremos para los perfiles de usuarios
 
-# Create your views here.
+
 def home(request):
-    return redirect('login')
+    return render(request, 'core/home.html')
+
 
 @login_required
 def pre_check_profile(request):
@@ -37,7 +38,7 @@ def check_profile(request):
     if profile.group_id == 1:        
         return redirect('admin_main')
     elif profile.group_id == 0:
-        return redirect('admin_main')
+        return redirect('home')
     else:
         return redirect('logout')
 

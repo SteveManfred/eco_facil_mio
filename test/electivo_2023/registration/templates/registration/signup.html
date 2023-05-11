@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -96,16 +97,13 @@ button{
 }    
 
 .logo {
-    margin-left: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
-.logo a {
-    text-decoration: none;
-    color: #ffffff;
-    text-transform: uppercase;
-    font-size: 35px;
+.logo {
+    max-width: 150px;
 }
-
 .navbar {
     display: flex;
     margin-right: 10px;
@@ -145,7 +143,7 @@ display: none;
 <body>
     <div class="head">
         <div class="logo">
-            <a href="{% url 'home' %}">EcoFácil</a>
+            <img class="logo" src="{% static "assets/img/logo3.png" %}" alt="EcoFacil">
         </div>
         <nav class="navbar">
                             <a href="{% url 'home' %}">Inicio</a>

@@ -1,0 +1,9 @@
+{% extends "clientes/base.html" %}
+
+{% block content %}
+    <h2>{{ clientes.nombre }} {{ clientes.apellido }}</h2>
+    <p><strong>Correo:</strong> {{ clientes.correo }}</p>
+    <p><strong>Dirección:</strong> {{ clientes.direccion }}</p>
+    <p><strong>Teléfono</strong> {{ clientes.telefono }}</p>    
+    <a href="{% url 'clientes_list' %}" class="btn btn-secondary">Regresar al listado</a>
+{% endblock %}

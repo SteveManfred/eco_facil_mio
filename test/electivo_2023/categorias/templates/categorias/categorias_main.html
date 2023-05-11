@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+  <title>EcoFácil</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/jqvmap/jqvmap.min.css' %} ">
+  <link rel="stylesheet" href="{% static 'lib/AdminLTE-3.2.0/css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %} ">
+  <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %} ">
+  <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css' %} ">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+    <style>
+.navbar-default {
+  background-color: #00c040;
+  margin-left: 250px;
+}
+.bg-mi-color{
+    background-color: #e9e9e9 ;
+    font-family:'Poppins',sans-serif;
+}
+.container{
+  margin-left: 280px;
+} 
+.container2{
+  margin-left: 70px;
+} 
+.main-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #f4f6f9;
+}
+    </style>
+</head>
+<body class="bg-mi-color">
+  <aside class="main-sidebar sidebar-light-primary elevation-4">
+    <a href="#" class="brand-link">
+        <img src="{% static "/assets/img/logo3.png" %}"
+             alt="Logo"
+             class="brand-image"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">ECOFÁCIL</span>
+    </a>
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="info">
+                <a href="#" class="d-block">{{ request.user.username }} </a>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header">Menú Principal</li>
+                <li class="nav-item">
+                  <a href="{% url 'users_main' %}" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                        Usuarios
+                    </p>
+                </a>
+              </li>
+                <li class="nav-item">
+                    <a href="{% url 'productos_main' %}" class="nav-link">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>
+                            Productos
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'categorias_main' %}" class="nav-link">
+                        <i class="nav-icon fas fa-boxes"></i>
+                        <p>
+                            Categorías
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'insumos_main' %}" class="nav-link">
+                        <i class="nav-icon fas fa-boxes"></i>
+                        <p>
+                            Insumos
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'proveedores_main' %}" class="nav-link">
+                      <i class="nav-icon fas fa-truck"></i>
+                      <p>
+                          Proveedores
+                      </p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'prueba' %}" class="nav-link">
+                    <i class="nav-icon fas fa-file-invoice"></i>
+                    <p>
+                        Orden de compra
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'clientes_main' %}" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                      Clientes
+                  </p>
+              </a>
+          </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a style="color: #fff;" class="navbar-brand" href="#">EcoFácil</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a style="color: #fff; font-size: 23px;" href="#"><span class="glyphicon glyphicon-user"></span> ¡Bienvenido {{request.user.first_name}} {{request.user.last_name}}!</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a style="color: #fff;" href="#"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container2 my-3">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div style="background-color: #00c040;" class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"><a style="color: #fff;">Hay {{ total_categorias }} categorias creadas.</a></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="background-color: #00c040;" class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"><a style="color: #fff;">Hay {{ total_categorias }} categorias creadas.</a></h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+      <div class="container my-5">
+        <div class="row justify-content-center">
+            
+            <div class="row">
+                <div class="col-lg-5 col-12">
+                
+                    <div style="background-color: #00c040; color: #fff;" class="small-box"> 
+                    <div class="inner">
+                
+                    <h2>Crear categoría</h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fas fa-plus"></i>
+                    </div>
+                    <a href="{% url 'categorias_insert' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 col-5">
+                
+                    <div style="background-color: #00c040; color: #fff;" class="small-box"> 
+                    <div class="inner">
+                    
+                    <h2>Carga masiva</h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-file-excel"></i>
+                    </div>
+                    <a href="{% url 'carga_masiva_categorias' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-12">
+                
+                    <div style="background-color: #00c040; color: #fff;" class="small-box"> 
+                    <div class="inner">
+                    
+                    <h2>Listado</h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-list"></i>
+                    </div>
+                    <a href="{% url 'categorias_list'  %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 col-5">
+                
+                    <div style="background-color: #00c040; color: #fff;" class="small-box"> 
+                    <div class="inner">
+                    
+                    <h2>Reporte en PDF </h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-file-pdf"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-12">
+                
+                    <div style="background-color: #00c040; color: #fff;" class="small-box"> 
+                    <div class="inner">
+                    
+                    <h2>Volver</h2>
+                    </div>
+                    <a href="{% url 'admin_main' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>                
+                </div>
+        </div>
+      </div>
+
+      
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{% extends "proveedores/base.html" %}
+
+{% block content %}
+    <h2>{{ proveedores.nombre }}</h2>
+    <p><strong>Dirección:</strong> {{ proveedores.direccion }}</p>
+    <a href="{% url 'proveedores_list' %}" class="btn btn-secondary">Regresar al listado</a>
+{% endblock %}

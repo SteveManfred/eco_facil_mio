@@ -1,0 +1,108 @@
+{% extends 'proveedores/base1.html' %}
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<form method="post" id="formFactura">
+  {% csrf_token %}
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h2 colspan="2">Orden de compra</h2>
+      <button class="btn btn-info" type="submit">Añadir</button>
+      <a href="{% url 'generar_pdf1' %}"class="btn btn-success" target="_factura">Reporte</a>
+      <a href="{% url 'admin_main' %}" class="btn btn-danger">Cancelar</a>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tr>   
+ 
+          <th>Num. de orden</th>
+          <td><input type="text" class="form-control" name="id" id="idCompras"></td>
+        </tr>
+        <tr>
+          <th>Proveedor:</th>
+          <td>
+            <select name="proveedor" id="proveedor" class="form-control">
+              <option value="0">Seleccione el proveedor</option>
+              {% for proveedor in proveedores %}
+                <option value="{{ proveedor.id }}">{{ proveedor.nombre }}</option>
+              {% endfor %}
+            </select>
+          </td>    
+          <th>Dirección:</th>
+          <td>
+            <input type="text" class="form-control" name="direccion" id="direccion" >
+          </td>
+        </tr>
+        <tr>
+          <th>Producto:</th>
+          <td>
+            <select name="producto" id="producto" class="form-control">
+              <option value="0">Seleccione el producto</option>
+              {% for producto in productos %}
+                <option value="{{ producto.id }}">{{ producto.nombre }}</option>
+              {% endfor %}
+            </select>
+          </td>  
+            <th>Subtotal:</th>
+            <td><input type="number" name="subTotal" id="subTotal" class="form-control text-right" value="0" readonly></td>
+  
+        </tr>
+        <tr>
+          <th>Cantidad</th>
+          <td><input type="number" name="cantidad" id="cantidad" class="form-control text-right" value="0"></td>
+          <th>Desc:</th>
+          <td><input type="number" name="descuento" id="descuento" class="form-control text-right" value="0" ></td>
+        </tr>
+        <tr>
+          <th>Precio</th>
+          <td><input type="number" name="precio" id="precio" class="form-control text-right" value="0"></td>
+          <th>Total:</th>
+          <td><input type="number" name="total" id="total" class="form-control text-right" value="0" disabled></td>
+          <td colspan="2"></td>
+        </tr>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+            <th>Descuento</th>
+            <th>Total</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for detalle in detallecompra %}
+            <tr>
+              <td>{{ detalle.producto.nombre }}</td>
+              <td>{{ detalle.cantidad }}</td>
+              <td>{{ detalle.precio }}</td>
+              <td>{{ detalle.sub_total_detalle }}</td>
+              <td>{{ detalle.descuento_detalle }}</td>
+              <td>{{ detalle.total_detalle }}</td>
+              <td>
+                <a href="{% url 'ver_orden_compra' detalle.id %}">Ver</a>
+                <a href="{% url 'eliminar_orden_compra' compra.id %}">Eliminar</a>
+                
+            </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+{% endblock %}
+
+
+
+
+
+  

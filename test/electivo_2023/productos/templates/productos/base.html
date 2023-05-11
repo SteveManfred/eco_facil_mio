@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 .bg-mi-color{
     background-color: #4d8066 ;
@@ -8,14 +12,82 @@
 .jumbotron{
     background-color: #92bba6 !important;
     font-family:'Poppins',sans-serif;
-    
+}
+.btn-buscar {
+      background-color: #28a745 !important; 
+      border-color: #28a745 !important; 
+      color: #fff !important;
+    }
+/* Estilos para la barra lateral */
+
+.offcanvas {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  padding: 1rem;
+  background-color: #92bba6;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
 }
 
-.btn-buscar {
-      background-color: #28a745 !important; /* Cambia este valor al color que desees */
-      border-color: #28a745 !important; /* Cambia este valor al color que desees */
-      color: #fff !important; /* Cambia este valor al color que desees para el texto del botón */
-    }
+.offcanvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #ced4da;
+}
+
+.offcanvas-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+  font-size: 1.25rem;
+}
+
+.offcanvas-body {
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.offcanvas.show {
+  transform: translateX(0);
+}
+
+.btn-toggle {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .offcanvas {
+    width: 320px;
+  }
+}
+
+.btn-close {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+  opacity: 0.5;
+  background-color: #f8d7da;
+  border: 2px solid #f5c6cb;
+}
+
+.btn-close:hover {
+  color: #000;
+  opacity: 0.75;
+  background-color: #f5c6cb;
+  border-color: #f5c6cb;
+}
+.list-group-item {
+    color: #000 !important;
+    background-color: #92bba6 !important;
+}
+
 
 </style>
 
@@ -30,19 +102,58 @@
 </head>
 
 <body class="bg-mi-color">
+    <button class="btn btn-secondary btn-lg btn-toggle" type="button" data-toggle="offcanvas">
+        <i class="fa fa-bars"></i> 
+      </button>    
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menú Productos</h5>
+          <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="offcanvas">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="offcanvas-body">
+          <a href="{% url 'productos_main' %}" class="list-group-item list-group-item-action">
+            <i class="fa fa-tachometer-alt"></i> Dashboard
+          </a>    
+          <a href="{% url 'productos_insert' %}" class="list-group-item list-group-item-action">
+            <i class="fa fa-plus mr-2"></i> Crear producto
+          </a>
+          <a href="{% url 'productos_list' %}" class="list-group-item list-group-item-action">
+            <i class="fa fa-th-list mr-2"></i> Listado productos
+          </a>
+          <a href="{% url 'carga_masiva_productos' %}" class="list-group-item list-group-item-action">
+            <i class="fa fa-file-upload mr-2"></i> Carga masiva
+          </a>
+          <a href="{% url 'reporte_pdf' %}" class="list-group-item list-group-item-action">
+            <i class="fa fa-file-pdf mr-2"></i> Reporte en PDF
+          </a>
+        </div>
+      </div>
+  <div class="main-content">
     <div class="container">
-        <div class="col-md-10 offset-md-1 mt-5">
-            <div class="jumbotron">
-                <h1 class="display-4">Productos</h1>
-                <p class="lead font-italic">Gestion de productos</p>
+        {% if messages %}
+        <div class="container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+        <div class="col-md-10 offset-md-1">
+            <div class="jumbotron" style="margin-bottom: 0;">
+                <h1 class="display-5">Gestión de productos</h1>
                 <hr class="my-4">
                 {% block content %}
                 {% endblock content %}
             </div>
         </div>
     </div>
-
-
+  </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -52,5 +163,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+<!-- Enlace a Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+      $('.btn-toggle').click(function() {
+        $('.offcanvas').toggleClass('show');
+      });
+
+      $('[data-bs-dismiss="offcanvas"]').click(function () {
+        $('.offcanvas').removeClass('show');
+      });
+    });
+  </script>
 </body>
 </html>

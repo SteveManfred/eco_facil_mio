@@ -13,3 +13,4 @@ djangorestframework==3.11.2
 django-bootstrap4
 django-crispy-forms
 crispy-bootstrap4
+reportlab

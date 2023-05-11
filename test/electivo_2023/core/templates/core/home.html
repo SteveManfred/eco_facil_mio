@@ -1,28 +1,69 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
 <style>
 .bg-mi-color{
     background-color: #4d8066 ;
     font-family:'Poppins',sans-serif;
 }
 .bg-mi-color1{
-    background-color: #333 ;
+    background-color: #575757 ;
     font-family:'Poppins',sans-serif;
 }
+.logo {
+    max-width: 60px;
+}
+    
+.product-card {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
+}
 
+.product-card h2 {
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    margin-bottom: 0;
+}
+
+.cart {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.cart h2 {
+    margin-bottom: 10px;
+}
+
+.cart table {
+    width: 100%;
+}
+
+.cart table th,
+.cart table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart table th {
+    font-weight: bold;
+}
     
-    
-    </style>
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bootstrap Minimalista</title>
+    <title>EcoFacíl</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body class="bg-mi-color">
   <nav class="navbar navbar-expand-lg navbar bg-mi-color1">
-        <a style="color: white;" class="navbar-brand" href="#">EcoFácil</a>
+        <img class="logo" src="{% static "assets/img/logo1.png" %}" alt="EcoFacil">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -53,17 +94,173 @@
     </nav>
 
     <div class="container mt-5">
+        <h2 class="mb-4">Productos</h2>
         <div class="row">
-            <div class="col-md-8 mx-auto text-center">
-                <h1 class="mb-3">Bienvenido a nuestra tienda de productos desechables</h1>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius faucibus eros, eu lacinia elit laoreet vitae. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam venenatis nisl a justo ornare, ut ultrices velit mollis.</p>
-                <a style="color: white;" href="#" class="btn btn-dark">Leer más</a>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                  <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+                  <div class="card-body">
+                    <h5 class="card-title">Producto 3</h5>
+                    <p class="card-text">Descripción breve del producto 3.</p>
+                    <p class="card-text">$1.000 CL</p>
+                    <button class="btn btn-primary">Agregar al carrito</button>
+                  </div>
+                </div>
+              </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
             </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% static "assets/img/producto3.png" %}" class="card-img-top" alt="Producto 3">
+              <div class="card-body">
+                <h5 class="card-title">Producto 3</h5>
+                <p class="card-text">Descripción breve del producto 3.</p>
+                <p class="card-text">$1.000 CL</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+      </div>
+      

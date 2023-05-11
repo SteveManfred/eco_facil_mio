@@ -1,14 +1,14 @@
 from django import forms
-from .models import Producto  #Employee
+from .models import Producto  
 from django.forms import ModelForm
 
 
 
 
-class ProductosForm(forms.ModelForm):  #EmployeeForm
+class ProductosForm(forms.ModelForm): 
 
     class Meta:
-        model = Producto  #model = Employee
+        model = Producto  
         fields = ('nombre','material','cantidad','categoria')
         labels = {
             'nombre':'Nombre',

@@ -9,7 +9,7 @@ la pagina de inicio, el segundo parametro indica que función del views que impo
 usaremos para la url consultada, esta debe existir, el tercer parametro el nombre que le daremos
 '''
 core_urlpatterns = [
-    path('', views.home, name='home'),    
+    path('home', views.home, name='home'),    
     path('check_profile', views.check_profile, name='check_profile'),           
 
     ]

@@ -27,10 +27,22 @@
 
 <body class="bg-mi-color">
     <div class="container">
+        {% if messages %}
+        <div class="container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
         <div class="col-md-10 offset-md-1 mt-5">
             <div class="jumbotron bg-mi-color">
                 <h1 class="display-4">Categorías</h1>
-                <p class="lead font-italic">Gestion de categorías</p>
+                <p class="lead font-italic">Gestión de categorías</p>
                 <hr class="my-4">
                 {% block content %}
                 {% endblock content %}

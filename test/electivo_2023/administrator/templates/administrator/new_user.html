@@ -1,16 +1,25 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="es">
     <head>
         <title>EcoFácil</title>
      
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href=" {% static '/plugins/fontawesome-free/css/all.min.css' %}">
+
+        <link rel="stylesheet" href=" {% static 'lib/AdminLTE-3.2.0/css/adminlte.min.css' %}">
     </head>
         <style media="screen">   
 body{
-    background-color: #4d8066;
+    background-color: #ffffff;
     font-family: 'Poppins',sans-serif;
     padding: 0 ;
+    width: 67%;
+    margin: 15px;
 }       
 input{
     background-color: #ffffff;
@@ -23,14 +32,14 @@ option{
     margin: 15px;
     text-align: left;
     width: 150px;
-    height: 22px;
+    height: 20px;
 }
 main{
     text-align: left;
 }
 h3{
     font-size: 25px; 
-    text-align: left;
+    text-align: center;
 }
 form div {
     text-align: left;
@@ -44,19 +53,19 @@ form div {
 
 .navbar h3 {
     margin: 0;
-    background-color: #4d8066;
+    background-color: #5ec031;
     display:block;
-    padding: 20px 20px;
-    color: #333;
+    padding: 30px 20px;
+    color: #ffffff;
     text-decoration: none;
     font-size: 25px;
-    width: 100%;
+    width: 67%;
 }
 label{
     font-size: 18px;
 }
 button{
-    background-color: #333333;
+    background-color: #319adf;
     color: #ffffff;
     padding: 15px 0;
     font-size: 18px;
@@ -70,60 +79,77 @@ a{
     text-decoration: none;
     color: #000000;
 }
+main{
+    margin-left: 0%;
+}
 </style> 
+<!DOCTYPE html>
     <main role="main">
         <body>
             <nav class="navbar">
               <h3>Crear nuevo usuario</h3> 
             </nav> 
 
-            <div class="col-12  mt-3 border">
+            <div class="col-8  mt-15 border">
                 <form action="" method="post">
                     {% csrf_token %}
-                    <div class="row"> 
-                        <div class="col-12 col-sm-8 mb-3">
+                    <div class="row border"> 
+                        <div class="form-group">
                             <label for="rut">Nombre de usuario</label>
                             <input type="text" name="rut"  required oninput="checkRut(this)" autofocus maxlength="254" required id="id_rut" class="form-control border border-danger"/>
                         </div>  
-                        <div class="col-12 col-sm-4 mb-3">
-                            <label for="email">Perfil</label>
-                            <select name="grupo" id="grupo" class="form-control border border-danger" required>
-                                <option value="">--------------------------</option>
-                                {% for g in groups %}
-                                <option value="{{g.id}}">{{g.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>  
-                    </div>    
-                    <div class="row">                       
-                        <div class="col-12 col-sm-4 mb-3">
+                         
+                    </div> 
+                    <div class="col-lg-3 ">  
+                    <div class="form-group ">
+                        <label for="email">Perfil</label>
+                        <select name="grupo" id="grupo" class="form-control border border-danger" required>
+                            <option value="">--------------------------</option>
+                            {% for g in groups %}
+                            <option value="{{g.id}}">{{g.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div> 
+                    </div> 
+                    <div class="row border">                       
+                        <div class="form-group">
                             <label for="name">Nombre (*)</label>
                             <input type="text" class="form-control border border-danger" id="name" name="name" autofocus maxlength="254" required/>
                         </div>
-                        <div class="col-12 col-sm-4 mb-3">
+                    </div>
+
+                    <div class="row border">
+                        <div class="form-group">
                             <label for="last_name">Apellidos</label>
                             <input type="text" class="form-control border border-danger" id="last_name1" name="last_name1" required/>
-                        </div>                        
-                        <div class="col-12 col-sm-4 mb-3">
+                        </div>
+                    </div>  
+                        
+                    <div class="row border">
+                        <div class="form-group">
                             <label for="mobile">Celular</label>
                             <input type="number" class="form-control border border-danger" id="mobile" name="mobile"/>
-                        </div>                        
-                    </div>
-                    <div class="row"> 
-                        <div class="col-12 col-sm-8 mb-3">
+                        </div> 
+                    </div>                       
+                    
+                    <div class="row border"> 
+                        <div class="form-group">
                             <label for="email">Correo (*)</label>
                             <input type="email" class="form-control border border-danger" placeholder="nombre@gmail.cl" name="email"/>
                         </div>
-                        <div class="col-12 col-sm-4 mb-3">
+                    </div>
+
+                    <div class="row border"> 
+                        <div class="form-group">
                             <label for="position">Cargo</label>
                             <input type="position" class="form-control border border-danger" placeholder="Administrador" name="position" required/>
                         </div>
                     </div>
                     <div class="row"> 
-                        <div class="col-12 col-sm-6 mb-3">
+                        <div class="col-12 col-sm-6 mb-8">
                             <button type="submit">Crear usuario</button>
                         </div>
-                        <div class="col-12 col-sm-6 mb-3">
+                        <div class="col-12 col-sm-6 mb-8">
                             <a href="{% url 'users_main' %}" class="btn btn-danger form-control">Volver</a>
                         </div>
                     </div>

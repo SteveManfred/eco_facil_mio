@@ -1,40 +1,63 @@
-
 {% extends "categorias/base.html" %}
 
-
 {% block content %}
-<table class="table table-borderless">
-    <thead class="border-bottom font-weight-bold">
-        <tr>
-            <td>Nombre</td>
-            <td>
-                <a href="{% url 'categorias_insert' %}" class="btn btn-outline-success">
-                    <i class="fas fa-plus"></i> Añadir nuevo
-                </a>
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for Categorias in categorias_lista %}
-            <tr>
-                <td>{{Categorias.nombre}}</td>
-                <td>
-                    <a href="{% url 'categorias_update' Categorias.id %}" class="btn text-secondary px-0">
-                        <i class="far fa-edit fa-lg"></i>
-                    </a>
-                    <a href="{% url 'categorias_read' Categorias.id %}" class="btn text-secondary px-0">
-                        <i class="fas fa-info-circle fa-lg"></i>
-                    </a>                      
-                    <form action="{% url 'categorias_delete' Categorias.id %}" method="post" class="d-inline">
-                        {% csrf_token %}
-                        <button type="submit" class="btn">
-                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+    <div class="row">
+        <div class="col-12 col-lg-6 mb-2">
+            <form method="GET">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Buscar categoría" value="{{ request.GET.q }}">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary btn-buscar">
+                            <i class="fas fa-search"></i> Buscar
                         </button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-6 mb-2">
+            <a href="{% url 'categorias_list' %}" class="btn btn-outline-dark">
+                <i class="fas fa-times"></i> Limpiar
+            </a>
+            <a href="{% url 'categorias_insert' %}" class="btn btn-outline-dark">
+                <i class="fas fa-plus"></i> Añadir 
+            </a>
+            <a href="{% url 'import_file_categorias' %}" class="btn btn-outline-dark">
+                <i class="fas fa-file-pdf"></i> Reporte
+            </a>     
+            <a href="{% url 'categorias_main' %}" class="btn btn-outline-dark">
+                <i class="fas fa-home"></i> Menú
+            </a>
+        </div>
+    </div>
 
+    <table class="table table-borderless">
+        <thead class="border-bottom font-weight-bold">
+            <tr>
+                <td>Nombre</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Categorias in categorias_lista %}
+                <tr>
+                    <td>{{Categorias.nombre}}</td>
+
+                    <td>
+                        <a href="{% url 'categorias_update' Categorias.id %}" class="btn text-secondary px-0">
+                            <i class="far fa-edit fa-lg"></i>
+                        </a>
+                        <a href="{% url 'categorias_read' Categorias.id %}" class="btn text-secondary px-0">
+                            <i class="fas fa-info-circle fa-lg"></i>
+                        </a>                      
+                        <form action="{% url 'categorias_delete' Categorias.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock content %}

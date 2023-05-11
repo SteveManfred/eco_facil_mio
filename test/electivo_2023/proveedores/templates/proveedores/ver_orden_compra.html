@@ -1,0 +1,30 @@
+{% extends 'proveedores/base.html' %}
+
+{% block content %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                    <th>Descuento</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detalle in detalles %}
+                    <tr>
+                        <td>{{ detalle.producto.nombre }}</td>
+                        <td>{{ detalle.cantidad }}</td>
+                        <td>{{ detalle.precio }}</td>
+                        <td>{{ detalle.sub_total_detalle }}</td>
+                        <td>{{ detalle.descuento_detalle }}</td>
+                        <td>{{ detalle.total_detalle }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -4,7 +4,7 @@ import random
 from turtle import home
 import pandas as pd
 from datetime import datetime, time, timedelta
-
+from django.shortcuts import render, redirect
 
 from django import forms
 from django.contrib import messages
@@ -251,9 +251,10 @@ def carga_masiva_users(request):
     template_name = 'administrator/carga_masiva_users.html'
     return render(request,template_name,{'profiles':profiles})
 
+
 @login_required
 def import_file_users(request):
-    profiles = Profile.objects.get(user_id = request.user.id)
+    profiles = Profile.objects.get(user_id=request.user.id)
     if profiles.group_id != 1:
         messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
         return redirect('check_group_main')
@@ -262,7 +263,7 @@ def import_file_users(request):
     wb = xlwt.Workbook(encoding='utf-8')
     ws = wb.add_sheet('carga_masiva')
     row_num = 0
-    columns = ['Nombre','Correo']
+    columns = ['Nombre', 'Correo', 'Grupo']
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
     for col_num in range(len(columns)):
@@ -272,35 +273,44 @@ def import_file_users(request):
     date_format.num_format_str = 'dd/MM/yyyy'
     for row in range(1):
         row_num += 1
-        for col_num in range(2):
+        for col_num in range(3):
             if col_num == 0:
-                ws.write(row_num, col_num, 'ej: Andres' , font_style)
-            if col_num == 1:                           
-                ws.write(row_num, col_num, 'Andres@gmail.com' , font_style)
+                ws.write(row_num, col_num, 'ej: Andres', font_style)
+            elif col_num == 1:
+                ws.write(row_num, col_num, 'Andres@gmail.com', font_style)
+            elif col_num == 2:
+                ws.write(row_num, col_num, 'Nombre del Grupo', font_style)
     wb.save(response)
-    return response  
+    return response
+
 
 @login_required
 def carga_masiva_users_save(request):
-    profiles = Profile.objects.get(user_id = request.user.id)
+    profiles = Profile.objects.get(user_id=request.user.id)
     if profiles.group_id != 1:
         messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
         return redirect('check_group_main')
 
     if request.method == 'POST':
-        #try:
-        print(request.FILES['myfile'])
         data = pd.read_excel(request.FILES['myfile'])
         df = pd.DataFrame(data)
         acc = 0
         for item in df.itertuples():
-            #capturamos los datos desde excel
-            nombre = str(item[1])            
+            nombre = str(item[1])
             correo = str(item[2])
-        user = User.objects.create_user(
-            username= nombre,
-            email= correo,
-                    )
-        messages.add_message(request, messages.INFO, 'Carga masiva finalizada, se importaron '+str(acc)+' registros')
-        return redirect('carga_masiva_users')    
+            nombre_grupo = str(item[3])
+            try:
+                grupo = Group.objects.get(name=nombre_grupo)
+            except Group.DoesNotExist:
+                messages.add_message(request, messages.ERROR, f'El grupo "{nombre_grupo}" no existe')
+                continue
+            user = User.objects.create_user(
+                username=nombre,
+                email=correo,
+            )
+            profile = Profile.objects.create(user=user, group=grupo)
+            acc += 1
+        messages.add_message(request, messages.INFO, f'Carga masiva finalizada, se importaron {acc} registros')
+        return redirect('carga_masiva_users')
+ 
        

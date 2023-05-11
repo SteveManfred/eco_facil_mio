@@ -1,107 +1,179 @@
-
 <!DOCTYPE html>
+{% load static %}
 <html lang="es">
-    <head>
-        <title>EcoFácil</title>
-     
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    </head>
-        <style media="screen">   
-body{
-    background-color: #4d8066;
-    font-family: 'Poppins',sans-serif;
-    padding: 0 ;
+<style>
+.navbar-default {
+  background-color: #00c040;
 }
-.square-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70vh;
+.bg-mi-color{
+    background-color: #e9e9e9 ;
+    font-family:'Poppins',sans-serif;
 }
-
-.square {
-  background-color: #333;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 150px;
-  width: 150px;
-  margin: 50px;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease-in-out;
-}
-.square:hover {
-  transform: translateY(-20px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-}
-
-a {
-  color: #fff;
-  font-size: 24px;
-  text-decoration: none;
-  text-align: center;
-}
-h3{
-    font-size: 25px; 
-    text-align: center;
-    animation: fadeIn 2s;
-
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.navbar {
-    display: flex;
-    margin: 0 ;
-
+.container{
+    margin-left: 180px !important;
 
 }
 
-.navbar h3 {
-    margin: 0;
-    background-color: #4d8066;
-    display:block;
-    padding: 20px 20px;
-    color: #333;
-    text-decoration: none;
-    font-size: 25px;
-    width: 100%;
-}
+</style>
+<head>
+    <title>EcoFácil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
 
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
 
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+    <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
 
-        </style>          
-<body>
-  <nav class="navbar">
-    <h3>¡Bienvenido {{request.user.first_name}} {{request.user.last_name}}!</h3> 
-  </nav>  
+    <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
 
-    <div class="square-container">
-        <div class="square">
-          <a href="{% url 'users_main' %}">Gestión de usuarios</a>
-        </div>
-        <div class="square">
-          <a href="{% url 'productos_list' %}">Gestión de productos</a>
-        </div>
-        <div class="square">
-          <a href="{% url 'categorias_list' %}">Gestión de categorías</a>
-        </div>
-        <div class="square">
-          <a href="{% url 'insumos_list' %}">Gestión de insumos</a>
-        </div>
+    <link rel="stylesheet" href="{% static 'plugins/jqvmap/jqvmap.min.css' %} ">
 
+    <link rel="stylesheet" href="{% static 'lib/AdminLTE-3.2.0/css/adminlte.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %} ">
+
+    <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %} ">
+
+    <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css' %} ">
+
+</head>
+<body class="bg-mi-color">
+
+  <nav class="navbar navbar-default">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <a style="color: #fff;" class="navbar-brand" href="#">EcoFácil</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a style="color: #fff; font-size: 23px;" href="#"><span class="glyphicon glyphicon-user"></span> 
+                ¡Bienvenido {{request.user.first_name}} {{request.user.last_name}}!</a></li>  
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a style="color: #fff;" href="#"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+        </ul>
       </div>
-      
-</body>
-</html>        
+  </nav>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            
+            
+            <!-- Esto es adminlte -->
+            <div class="row">
+                <div class="col-lg-5 col-12">
+                
+                    <div style="background-color: #00c040; color: #fff;"  class="small-box"> 
+                    <div class="inner">
+                
+                    <p>Gestión de</p>
+                    <h2>USUARIOS</h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-folder"></i>
+                    </div>
+                    <a href="{% url 'users_main' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 col-5">
+                
+                    <div style="background-color: #00c040; color: #fff;"  class="small-box"> 
+                    <div class="inner">
+                    
+                    <p>Gestión de</p>
+                    <h2>PRODUCTOS</h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-folder"></i>
+                    </div>
+                    <a href="{% url 'productos_main' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 col-12">
+                
+                    <div style="background-color: #00c040; color: #fff;"  class="small-box"> 
+                    <div class="inner">
+                    
+                    <p>Gestión de</p>
+                    <h2>CATEGORÍAS</h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-folder"></i>
+                    </div>
+                    <a href="{% url 'categorias_main' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 col-5">
+                
+                    <div style="background-color: #00c040; color: #fff;"  class="small-box"> 
+                    <div class="inner">
+                    
+                    <p>Gestión de</p>
+                    <h2>INSUMOS</h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-folder"></i>
+                    </div>
+                    <a href="{% url 'insumos_main' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-12">
+                
+                    <div style="background-color: #00c040; color: #fff;"  class="small-box"> 
+                    <div class="inner">
+                    
+                    <p>Gestión de</p>
+                    <h2>PROVEEDORES</h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-folder"></i>
+                    </div>
+                    <a href="{% url 'proveedores_main' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-5">
+                
+                    <div style="background-color: #00c040; color: #fff;"  class="small-box"> 
+                    <div class="inner">
+                    
+                    <p>Gestión de</p>
+                    <h2>ORDEN DE COMPRA </h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-folder"></i>
+                    </div>
+                    <a href="{% url 'prueba' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5 col-5">
+                
+                    <div style="background-color: #00c040; color: #fff;"  class="small-box"> 
+                    <div class="inner">
+                    
+                    <p>Gestión de</p>
+                    <h2>CLIENTES </h2>
+                    </div>
+                    <div class="icon">
+                    <i class="fa fa-folder"></i>
+                    </div>
+                    <a href="{% url 'clientes_main' %}" class="small-box-footer">Acceder <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                    
+                
+                </div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@

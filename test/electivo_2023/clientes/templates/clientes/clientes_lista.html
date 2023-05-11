@@ -1,0 +1,72 @@
+{% extends "clientes/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 col-lg-6 mb-2">
+            <form method="GET">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Buscar producto" value="{{ request.GET.q }}">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary btn-buscar">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-6 mb-2">
+            <a href="{% url 'clientes_list' %}" class="btn btn-outline-dark">
+                <i class="fas fa-times"></i> Limpiar
+            </a>
+            <a href="{% url 'clientes_insert' %}" class="btn btn-outline-dark">
+                <i class="fas fa-plus"></i> Añadir 
+            </a>
+            <a href="#" class="btn btn-outline-dark">
+                <i class="far fa-file-pdf"></i> Reporte
+            </a>
+
+            <a href="{% url 'clientes_main' %}" class="btn btn-outline-dark">
+                <i class="fas fa-home"></i> Menú
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-borderless">
+        <thead class="border-bottom font-weight-bold">
+            <tr>
+                <td>Nombre</td>
+                <td>Apellido</td>
+                <td>Correo</td>
+                <td>Dirección</td>
+                <td>Teléfono</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Clientes in clientes_lista %}
+                <tr>
+                    <td>{{Clientes.nombre}}</td>
+                    <td>{{Clientes.apellido}}</td>
+                    <td>{{Clientes.correo}}</td>
+                    <td>{{Clientes.direccion}}</td>
+                    <td>{{Clientes.telefono}}</td>
+
+                    <td>
+                        <a href="{% url 'clientes_update' Clientes.id %}" class="btn text-secondary px-0">
+                            <i class="far fa-edit fa-lg"></i>
+                        </a>
+                        <a href="{% url 'clientes_read' Clientes.id %}" class="btn text-secondary px-0">
+                            <i class="fas fa-info-circle fa-lg"></i>
+                        </a>                      
+                        <form action="{% url 'clientes_delete' Clientes.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

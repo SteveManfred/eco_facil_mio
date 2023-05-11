@@ -1,0 +1,30 @@
+{% extends "clientes/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {{form.nombre|as_crispy_field}}
+    {{form.apellido|as_crispy_field}}
+    {{form.correo|as_crispy_field}}
+    <div class="row">
+        <div class="col-md-4">
+            {{form.direccion|as_crispy_field}}
+            {{form.telefono|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Agregar</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'clientes_list' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-stream"></i> Listado
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

@@ -1,44 +1,66 @@
 {% extends "insumos/base.html" %}
 
-
 {% block content %}
-<table class="table table-borderless">
-    <thead class="border-bottom font-weight-bold">
-        <tr>
-            <td>Nombre</td>
-            <td>Material</td>
-            <td>
-                <a href="{% url 'insumos_insert' %}" class="btn btn-outline-success">
-                    <i class="fas fa-plus"></i> Añadir nuevo
-                </a>
-                <a href="{% url 'admin_main' %}" class="btn btn-outline-success">
-                    <i class="fas fa-home"></i> Menú principal
-                </a>
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for Insumos in insumos_lista %}
-            <tr>
-                <td>{{Insumos.nombre}}</td>
-                <td>{{Insumos.material}}</td>
-                <td>
-                    <a href="{% url 'insumos_update' Insumos.id %}" class="btn text-secondary px-0">
-                        <i class="far fa-edit fa-lg"></i>
-                    </a>
-                    <a href="{% url 'insumos_read' Insumos.id %}" class="btn text-secondary px-0">
-                        <i class="fas fa-info-circle fa-lg"></i>
-                    </a>                      
-                    <form action="{% url 'insumos_delete' Insumos.id %}" method="post" class="d-inline">
-                        {% csrf_token %}
-                        <button type="submit" class="btn">
-                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+    <div class="row">
+        <div class="col-12 col-lg-6 mb-2">
+            <form method="GET">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Buscar insumo" value="{{ request.GET.q }}">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary btn-buscar">
+                            <i class="fas fa-search"></i> Buscar
                         </button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-6 mb-2">
+            <a href="{% url 'insumos_list' %}" class="btn btn-outline-dark">
+                <i class="fas fa-times"></i> Limpiar
+            </a>
+            <a href="{% url 'insumos_insert' %}" class="btn btn-outline-dark">
+                <i class="fas fa-plus"></i> Añadir 
+            </a>
+            <a href="{% url 'reporte_insumos_pdf' %}" class="btn btn-outline-dark">
+                <i class="fas fa-file-pdf"></i> Reporte
+            </a>            
+            <a href="{% url 'insumos_main' %}" class="btn btn-outline-dark">
+                <i class="fas fa-home"></i> Menú
+            </a>
+        </div>
+    </div>
 
+    <table class="table table-borderless">
+        <thead class="border-bottom font-weight-bold">
+            <tr>
+                <td>Nombre</td>
+                <td>Cantidad</td>
+                <td>Material</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Insumos in insumos_lista %}
+                <tr>
+                    <td>{{Insumos.nombre}}</td>
+                    <td>{{Insumos.cantidad}}</td>
+                    <td>{{Insumos.material}}</td>
+                    <td>
+                        <a href="{% url 'insumos_update' Insumos.id %}" class="btn text-secondary px-0">
+                            <i class="far fa-edit fa-lg"></i>
+                        </a>
+                        <a href="{% url 'insumos_read' Insumos.id %}" class="btn text-secondary px-0">
+                            <i class="fas fa-info-circle fa-lg"></i>
+                        </a>                      
+                        <form action="{% url 'insumos_delete' Insumos.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock content %}
